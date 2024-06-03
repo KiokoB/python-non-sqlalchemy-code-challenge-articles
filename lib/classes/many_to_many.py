@@ -1,10 +1,11 @@
 class Article:
+    all = []
     def __init__(self, author, magazine, title):
         self.author = author
         self.magazine = magazine
         self.title = title
-        # author._articles.append(self)
-        # magazine._articles.append(self)
+        Article.all.append(self)
+        
 
     @property
     def title(self):
@@ -55,14 +56,13 @@ class Author:
         return self._name
 
     #Setter
-    @name.setter
-    def name(self,name):
-        if isinstance(name, str) and len(name) > 0 :
-            self._name = name
-            if hasattr(self, name):
-                raise AttributeError ("Name cannot be changed after it is set.")
+    # @name.setter
+    # def name(self,name):
+    #     if isinstance(name, str) and len(name) > 0 :
+    #         self._name = name
+    #         if hasattr(self, name):
+    #             raise AttributeError ("Name cannot be changed after it is set.")
 
-    #@property
     def articles(self):
         return self._articles
 
@@ -128,3 +128,4 @@ class Magazine:
             else:
                 authors_count[article.author] = 1
         return [author for author, count in authors_count.items() if count > 2]
+
